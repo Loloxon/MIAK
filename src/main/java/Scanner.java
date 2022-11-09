@@ -6,12 +6,15 @@ public class Scanner {
     private static int lastIndex = 0;
     public Scanner(Program program){
         Scanner.program = program;
-        singleDigitTokens.add(new Token("plus", "+"));
-        singleDigitTokens.add(new Token("minus", "-"));
-        singleDigitTokens.add(new Token("multiplication", "*"));
-        singleDigitTokens.add(new Token("divide", "/"));
-        singleDigitTokens.add(new Token("l_brace", "("));
-        singleDigitTokens.add(new Token("r_brace", ")"));
+        addSingleDigitToken("plus", '+');
+        addSingleDigitToken("minus", '-');
+        addSingleDigitToken("multiplication", '*');
+        addSingleDigitToken("divide", '/');
+        addSingleDigitToken("l_brace", '(');
+        addSingleDigitToken("r_brace", ')');
+    }
+    private void addSingleDigitToken(String code, char value){
+        singleDigitTokens.add(new Token(code, value));
     }
     public static Token scan(){
         char c = program.getInput(lastIndex);
