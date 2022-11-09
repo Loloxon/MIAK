@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
 public class Scanner {
-    private static final ArrayList<Token> librarySingleDigit = new ArrayList<>();
-    static Program program;
-    static int lastIndex = 0;
+    private static final ArrayList<Token> singleDigitTokens = new ArrayList<>();
+    private static Program program;
+    private static int lastIndex = 0;
     public Scanner(Program program){
         Scanner.program = program;
-        librarySingleDigit.add(new Token("plus", "+"));
-        librarySingleDigit.add(new Token("minus", "-"));
-        librarySingleDigit.add(new Token("multiplication", "*"));
-        librarySingleDigit.add(new Token("divide", "/"));
-        librarySingleDigit.add(new Token("l_brace", "("));
-        librarySingleDigit.add(new Token("r_brace", ")"));
+        singleDigitTokens.add(new Token("plus", "+"));
+        singleDigitTokens.add(new Token("minus", "-"));
+        singleDigitTokens.add(new Token("multiplication", "*"));
+        singleDigitTokens.add(new Token("divide", "/"));
+        singleDigitTokens.add(new Token("l_brace", "("));
+        singleDigitTokens.add(new Token("r_brace", ")"));
     }
     public static Token scan(){
         char c = program.getInput(lastIndex);
@@ -29,15 +29,12 @@ public class Scanner {
             }
             return new Token("number", String.valueOf(number));
         }
-        for(Token SDT:librarySingleDigit){
-            if(c==SDT.getValue().charAt(0)){
-                return SDT;
-            }
+        for(Token SDT:singleDigitTokens){
+            if(c==SDT.getValue().charAt(0)){return SDT;}
         }
         return new Token("unknown", c);
     }
     public static int getLastIndex() {
         return lastIndex;
     }
-
 }

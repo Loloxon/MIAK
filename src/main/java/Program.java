@@ -1,10 +1,9 @@
 
 public class Program {
-    String input;
-    Scanner scanner;
+    private final String input;
     public Program(String input){
         this.input = input;
-        scanner = new Scanner(this);
+        new Scanner(this);
     }
     public void run(){
         while(Scanner.getLastIndex()<input.length()) {
@@ -12,11 +11,6 @@ public class Program {
             System.out.println(scannedToken);
         }
     }
-    public String getInput() {
-        return input;
-    }
-    public char getInput(int idx) {
-        char[] inputAsArray = input.toCharArray();
-        return inputAsArray[idx];
-    }
+    public String getInput() {return input;}
+    public char getInput(int idx) {return input.toCharArray()[idx];}
 }
