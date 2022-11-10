@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Scanner {
     private static Program program;
     private static int lastIndex = 0;
@@ -7,20 +9,41 @@ public class Scanner {
     public static Token scan(){
         try {
             char c = program.getInput(lastIndex);
+            StringBuilder stringBuilder = new StringBuilder();
             lastIndex++;
-            StringBuilder number = new StringBuilder();
+
             if (Character.isDigit(c)) {
-                number.append(c);
+                stringBuilder.append(c);
                 while (lastIndex < program.getInput().length()) {
                     c = program.getInput(lastIndex);
                     if (Character.isDigit(c)) {
-                        number.append(c);
+                        stringBuilder.append(c);
                         lastIndex++;
                     } else {
                         break;
                     }
                 }
-                return new Token(TokenCode.number, String.valueOf(number));
+                return new Token(TokenCode.number, String.valueOf(stringBuilder));
+            }
+            if (Character.isLetter(c)) {
+                stringBuilder.append(c);
+                while (lastIndex < program.getInput().length()) {
+                    c = program.getInput(lastIndex);
+                    if (Character.isLetter(c) || Character.isDigit(c)) {
+                        stringBuilder.append(c);
+                        lastIndex++;
+                    } else {
+                        break;
+                    }
+                }
+                String s = String.valueOf(stringBuilder);
+                if(Objects.equals(s, "if"))
+                    return new Token(TokenCode.if_symbol, stringBuilder);
+                if(Objects.equals(s, "for"))
+                    return new Token(TokenCode.for_symbol, stringBuilder);
+                if(Objects.equals(s, "while"))
+                    return new Token(TokenCode.while_symbol, stringBuilder);
+                return new Token(TokenCode.ident, stringBuilder);
             }
             if (c == '+') {
                 return new Token(TokenCode.plus, c);
@@ -39,6 +62,15 @@ public class Scanner {
             }
             if (c == ')') {
                 return new Token(TokenCode.r_bracket, c);
+            }
+            if (c == '{') {
+                return new Token(TokenCode.l_buckle, c);
+            }
+            if (c == '}') {
+                return new Token(TokenCode.r_buckle, c);
+            }
+            if (c == ' '){
+                return new Token(TokenCode.blank, c);
             }
             return new Token(TokenCode.unknown, c);
         }

@@ -9,6 +9,12 @@ public class Token {
         this.code = code;
         this.value = Character.toString(value);
     }
+
+    public Token(TokenCode code, StringBuilder value) {
+        this.code = code;
+        this.value = String.valueOf(value);
+    }
+
     public String getValue(){
         return value;
     }
