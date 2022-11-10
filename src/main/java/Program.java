@@ -1,4 +1,3 @@
-
 public class Program {
     private final String input;
     public Program(String input){
@@ -6,10 +5,11 @@ public class Program {
         new Scanner(this);
     }
     public void run(){
-        while(Scanner.getLastIndex()<input.length()) {
-            Token scannedToken = Scanner.scan();
+        Token scannedToken;
+        do{
+            scannedToken = Scanner.scan();
             System.out.println(scannedToken);
-        }
+        }while (scannedToken.getCode()!=TokenCode.EOF);
     }
     public String getInput() {return input;}
     public char getInput(int idx) {return input.toCharArray()[idx];}

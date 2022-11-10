@@ -1,43 +1,49 @@
-import java.util.ArrayList;
-
 public class Scanner {
-    private static final ArrayList<Token> singleDigitTokens = new ArrayList<>();
     private static Program program;
     private static int lastIndex = 0;
     public Scanner(Program program){
         Scanner.program = program;
-        addSingleDigitToken("plus", '+');
-        addSingleDigitToken("minus", '-');
-        addSingleDigitToken("multiplication", '*');
-        addSingleDigitToken("divide", '/');
-        addSingleDigitToken("l_brace", '(');
-        addSingleDigitToken("r_brace", ')');
-    }
-    private void addSingleDigitToken(String code, char value){
-        singleDigitTokens.add(new Token(code, value));
     }
     public static Token scan(){
-        char c = program.getInput(lastIndex);
-        lastIndex++;
-        StringBuilder number = new StringBuilder();
-        if(Character.isDigit(c)){
-            number.append(c);
-            while(lastIndex<program.getInput().length()){
-                c = program.getInput(lastIndex);
-                if(Character.isDigit(c)) {
-                    number.append(c);
-                    lastIndex++;
+        try {
+            char c = program.getInput(lastIndex);
+            lastIndex++;
+            StringBuilder number = new StringBuilder();
+            if (Character.isDigit(c)) {
+                number.append(c);
+                while (lastIndex < program.getInput().length()) {
+                    c = program.getInput(lastIndex);
+                    if (Character.isDigit(c)) {
+                        number.append(c);
+                        lastIndex++;
+                    } else {
+                        break;
+                    }
                 }
-                else{break;}
+                return new Token(TokenCode.number, String.valueOf(number));
             }
-            return new Token("number", String.valueOf(number));
+            if (c == '+') {
+                return new Token(TokenCode.plus, c);
+            }
+            if (c == '-') {
+                return new Token(TokenCode.minus, c);
+            }
+            if (c == '*') {
+                return new Token(TokenCode.multiplication, c);
+            }
+            if (c == '/') {
+                return new Token(TokenCode.divide, c);
+            }
+            if (c == '(') {
+                return new Token(TokenCode.l_bracket, c);
+            }
+            if (c == ')') {
+                return new Token(TokenCode.r_bracket, c);
+            }
+            return new Token(TokenCode.unknown, c);
         }
-        for(Token SDT:singleDigitTokens){
-            if(c==SDT.getValue().charAt(0)){return SDT;}
+        catch (ArrayIndexOutOfBoundsException e){
+            return new Token(TokenCode.EOF, "EOF");
         }
-        return new Token("unknown", c);
-    }
-    public static int getLastIndex() {
-        return lastIndex;
     }
 }
