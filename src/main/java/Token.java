@@ -22,4 +22,10 @@ public class Token {
         return code;}
     @Override
     public String toString() {return "Token{" + code + ", '" + value + "'}";}
+
+    public void print(){
+        if(code!=TokenCode.EOF) {
+            System.out.print(code.printColor + value + "\u001B[0m");
+        }
+    }
 }

@@ -12,7 +12,7 @@ public class Scanner {
             StringBuilder stringBuilder = new StringBuilder();
             lastIndex++;
 
-            if (Character.isDigit(c)) {
+            if (Character.isDigit(c)) {             //digit
                 stringBuilder.append(c);
                 while (lastIndex < program.getInput().length()) {
                     c = program.getInput(lastIndex);
@@ -25,7 +25,7 @@ public class Scanner {
                 }
                 return new Token(TokenCode.number, String.valueOf(stringBuilder));
             }
-            if (Character.isLetter(c)) {
+            if (Character.isLetter(c)) {            //identificator
                 stringBuilder.append(c);
                 while (lastIndex < program.getInput().length()) {
                     c = program.getInput(lastIndex);
@@ -37,7 +37,7 @@ public class Scanner {
                     }
                 }
                 String s = String.valueOf(stringBuilder);
-                if(Objects.equals(s, "if"))
+                if(Objects.equals(s, "if"))         //loops
                     return new Token(TokenCode.if_symbol, stringBuilder);
                 if(Objects.equals(s, "for"))
                     return new Token(TokenCode.for_symbol, stringBuilder);
