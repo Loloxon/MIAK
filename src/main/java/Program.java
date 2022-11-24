@@ -9,16 +9,11 @@ public class Program {
     }
     public void run(){
         Token scannedToken;
-        List<Token> scannedTokens = new ArrayList<>();
         do{
             scannedToken = Scanner.scan();
-            scannedTokens.add(scannedToken);
-            System.out.println(scannedToken);
+//            System.out.println(scannedToken);
+            scannedToken.print();
         }while (scannedToken.getCode()!=TokenCode.EOF);
-        printFormatted(scannedTokens);
-    }
-    private void printFormatted(List<Token> tokens){
-        tokens.forEach(Token::print);
     }
     public String getInput() {return input;}
     public char getInput(int idx) {return input.toCharArray()[idx];}
