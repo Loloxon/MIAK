@@ -17,7 +17,6 @@ public enum TokenCode {
     EOF(Color.RESET.colorCode);
 
     final String printColor;
-    
     private TokenCode(String printColor) {
         this.printColor = "\u001B[" + printColor + "m";
     }
