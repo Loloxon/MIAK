@@ -1,3 +1,7 @@
+package basic;
+
+import basic.common.*;
+
 import java.util.Objects;
 
 public class Scanner {

@@ -1,3 +1,5 @@
+package basic.common;
+
 public enum Color {
     RESET("0"),
     BLACK("30"),
@@ -18,7 +20,7 @@ public enum Color {
     CYAN_BACKGROUND("46"),
     WHITE_BACKGROUND("47");
 
-    final String colorCode;
+    public final String colorCode;
     private Color(String colorCode) {
         this.colorCode = colorCode;
     }

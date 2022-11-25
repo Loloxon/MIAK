@@ -1,5 +1,9 @@
+package hussar;
+
+
+import hussar.common.*;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Program {
     private final String input;
@@ -9,11 +13,13 @@ public class Program {
     }
     public void run(){
         Token scannedToken;
+        ArrayList<Token> scannedTokens = new ArrayList<>();
         do{
             scannedToken = Scanner.scan();
-//            System.out.println(scannedToken);
+            scannedTokens.add(scannedToken);
             scannedToken.print();
-        }while (scannedToken.getCode()!=TokenCode.EOF);
+        }while (scannedToken.getCode()!= TokenCode.EOF);
+        scannedTokens.forEach(Token::printJV);
     }
     public String getInput() {return input;}
     public char getInput(int idx) {return input.toCharArray()[idx];}

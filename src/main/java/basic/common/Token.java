@@ -1,3 +1,5 @@
+package basic.common;
+
 public class Token {
     private final TokenCode code;
     private final String value;
@@ -18,7 +20,7 @@ public class Token {
     }
     public TokenCode getCode(){return code;}
     @Override
-    public String toString() {return "Token{" + code + ", '" + value + "'}";}
+    public String toString() {return "basic.common.Token{" + code + ", '" + value + "'}";}
 
     public void print(){
         if(code!=TokenCode.EOF) {

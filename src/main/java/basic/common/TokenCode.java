@@ -1,3 +1,5 @@
+package basic.common;
+
 public enum TokenCode {
     plus(Color.RESET.colorCode),
     minus(Color.RESET.colorCode),
@@ -17,7 +19,7 @@ public enum TokenCode {
     EOF(Color.RESET.colorCode);
 
     final String printColor;
-    private TokenCode(String printColor) {
+    TokenCode(String printColor) {
         this.printColor = "\u001B[" + printColor + "m";
     }
 }
